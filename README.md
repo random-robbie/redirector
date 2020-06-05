@@ -6,6 +6,8 @@ it will ignore all requests and force a redirection to the url you have set.
 
 By default it will redirect to AWS metadata endpoint but can be changed by using `-u http://someothersite.com`
 
+Supports most common HTTP verbs as well if one is missing send an PR or issue.
+
 
 ```
 usage: redirector.py [-h] [-u URL] [-c CODE] [-p PORT]
